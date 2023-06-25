@@ -38,7 +38,7 @@ const Login = () => {
 
     return (
         <>
-            <MetaData title="Login | Flipkart" />
+            <MetaData title="Ingresar | Ferreteria Pitty" />
 
             {loading && <BackdropLoader />}
             <main className="w-full mt-12 sm:pt-20 sm:mt-0">
@@ -47,8 +47,8 @@ const Login = () => {
                 <div className="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-white shadow-lg">
                     {/* <!-- sidebar column  --> */}
                     <div className="loginSidebar bg-primary-blue p-10 pr-12 hidden sm:flex flex-col gap-4 w-2/5">
-                        <h1 className="font-medium text-white text-3xl">Login</h1>
-                        <p className="text-gray-200 text-lg">Get access to your Orders, Wishlist and Recommendations</p>
+                        <h1 className="font-medium text-white text-3xl">Ingresar</h1>
+                        <p className="text-gray-200 text-lg">Obtenga acceso a sus pedidos, lista de deseos y recomendaciones</p>
                     </div>
                     {/* <!-- sidebar column  --> */}
 
@@ -74,7 +74,7 @@ const Login = () => {
                                     <TextField
                                         fullWidth
                                         id="password"
-                                        label="Password"
+                                        label="Contraseña"
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
@@ -84,9 +84,9 @@ const Login = () => {
 
                                     {/* <!-- button container --> */}
                                     <div className="flex flex-col gap-2.5 mt-2 mb-32">
-                                        <p className="text-xs text-primary-grey text-left">By continuing, you agree to Flipkart's <a href="https://www.flipkart.com/pages/terms" className="text-primary-blue"> Terms of Use</a> and <a href="https://www.flipkart.com/pages/privacypolicy" className="text-primary-blue"> Privacy Policy.</a></p>
-                                        <button type="submit" className="text-white py-3 w-full bg-primary-orange shadow hover:shadow-lg rounded-sm font-medium">Login</button>
-                                        <Link to="/password/forgot" className="hover:bg-gray-50 text-primary-blue text-center py-3 w-full shadow border rounded-sm font-medium">Forgot Password?</Link>
+                                        <p className="text-xs text-primary-grey text-left">Al continuar, acepta Ferreteria Pitty <a href="https://www.flipkart.com/pages/terms" className="text-primary-blue"> Terminos de Uso</a> & <a href="https://www.flipkart.com/pages/privacypolicy" className="text-primary-blue"> Politicas de privacidad.</a></p>
+                                        <button type="submit" className="text-white py-3 w-full bg-primary-orange shadow hover:shadow-lg rounded-sm font-medium">Ingresar</button>
+                                        <Link to="/password/forgot" className="hover:bg-gray-50 text-primary-blue text-center py-3 w-full shadow border rounded-sm font-medium">Olvidó su contraseña¡?</Link>
                                     </div>
                                     {/* <!-- button container --> */}
 
@@ -94,7 +94,7 @@ const Login = () => {
                             </form>
                             {/* <!-- input container --> */}
 
-                            <Link to="/register" className="font-medium text-sm text-primary-blue">New to Flipkart? Create an account</Link>
+                            <Link to="/register" className="font-medium text-sm text-primary-blue">¿Nuevo en Ferreteria Pitty? Crea una cuenta</Link>
                         </div>
                         {/* <!-- edit info container --> */}
 
