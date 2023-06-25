@@ -26,8 +26,8 @@ import { addItemsToCart } from '../../actions/cartAction';
 import { getDeliveryDate, getDiscount } from '../../utils/functions';
 import { addToWishlist, removeFromWishlist } from '../../actions/wishlistAction';
 import MinCategory from '../Layouts/MinCategory';
-import MetaData from '../Layouts/MetaData';
-
+import MetaData from '../Layouts/MetaData'; 
+ 
 const ProductDetails = () => {
 
     const dispatch = useDispatch();
@@ -64,16 +64,16 @@ const ProductDetails = () => {
     const addToWishlistHandler = () => {
         if (itemInWishlist) {
             dispatch(removeFromWishlist(productId));
-            enqueueSnackbar("Remove From Wishlist", { variant: "success" });
+            enqueueSnackbar("Eliminado de la lista de deseos", { variant: "success" });
         } else {
             dispatch(addToWishlist(productId));
-            enqueueSnackbar("Added To Wishlist", { variant: "success" });
+            enqueueSnackbar("Añadido a la lista de deseos", { variant: "success" });
         }
     }
 
     const reviewSubmitHandler = () => {
         if (rating === 0 || !comment.trim()) {
-            enqueueSnackbar("Empty Review", { variant: "error" });
+            enqueueSnackbar("Reseña vacía", { variant: "error" });
             return;
         }
         const formData = new FormData();
@@ -86,7 +86,7 @@ const ProductDetails = () => {
 
     const addToCartHandler = () => {
         dispatch(addItemsToCart(productId));
-        enqueueSnackbar("Product Added To Cart", { variant: "success" });
+        enqueueSnackbar("Producto agregado al carrito", { variant: "success" });
     }
 
     const handleDialogClose = () => {
@@ -156,12 +156,12 @@ const ProductDetails = () => {
                                         {product.stock > 0 && (
                                             <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-yellow rounded-sm shadow hover:shadow-lg">
                                                 <ShoppingCartIcon />
-                                                {itemInCart ? "GO TO CART" : "ADD TO CART"}
+                                                {itemInCart ? "Ir a la Compra" : "Agregar a la Compra"}
                                             </button>
                                         )}
-                                        <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm shadow hover:shadow-lg" : "p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-orange rounded-sm shadow hover:shadow-lg"}>
+                                        <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm shadow hover:shadow-lg" : "p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm shadow hover:shadow-lg"}>
                                             <FlashOnIcon />
-                                            {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
+                                            {product.stock < 1 ? "Sin Stock" : "Comprar Ahora"}
                                         </button>
                                         {/* <!-- add to cart btn --> */}
                                     </div>
@@ -181,28 +181,28 @@ const ProductDetails = () => {
                                     {/* <!-- rating badge --> */}
                                     <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
                                         <span className="text-xs px-1.5 py-0.5 bg-primary-green rounded-sm text-white flex items-center gap-0.5">{product.ratings && product.ratings.toFixed(1)} <StarIcon sx={{ fontSize: "12px" }} /></span>
-                                        <span>{product.numOfReviews} Reviews</span>
+                                        <span>{product.numOfReviews} Comentarios</span>
                                     </span>
                                     {/* <!-- rating badge --> */}
 
                                     {/* <!-- price desc --> */}
-                                    <span className="text-primary-green text-sm font-medium">Special Price</span>
+                                    <span className="text-primary-green text-sm font-medium">Precio Especial</span>
                                     <div className="flex items-baseline gap-2 text-3xl font-medium">
                                         <span className="text-gray-800">${product.price?.toLocaleString()}</span>
                                         <span className="text-base text-gray-500 line-through">${product.cuttedPrice?.toLocaleString()}</span>
                                         <span className="text-base text-primary-green">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
                                     </div>
                                     {product.stock <= 10 && product.stock > 0 && (
-                                        <span className="text-red-500 text-sm font-medium">Hurry, Only {product.stock} left!</span>
+                                        <span className="text-red-500 text-sm font-medium">Hurry, Only {product.stock} quedan!!</span>
                                     )}
                                     {/* <!-- price desc --> */}
 
                                     {/* <!-- banks offers --> */}
-                                    <p className="text-md font-medium">Available offers</p>
+                                    <p className="text-md font-medium">Ofertas disponibles</p>
                                     {Array(3).fill("").map((el, i) => (
                                         <p className="text-sm flex items-center gap-1" key={i}>
                                             <span className="text-primary-lightGreen"><LocalOfferIcon sx={{ fontSize: "20px" }} /></span>
-                                            <span className="font-medium ml-2">Bank Offer</span> 15% Instant discount on first Flipkart Pay Later order of 500 and above <Link className="text-primary-blue font-medium" to="/">T&C</Link>
+                                            <span className="font-medium ml-2">Transferencia  Bancaria</span>15% de descuento instantáneo en el primer pedido de Ferreteria Pitty<Link className="text-primary-blue font-medium" to="/">Términos y condiciones</Link>
                                         </p>
                                     ))}
                                     {/* <!-- banks offers --> */}
@@ -210,13 +210,13 @@ const ProductDetails = () => {
                                     {/* <!-- warranty & brand --> */}
                                     <div className="flex gap-8 mt-2 items-center text-sm">
                                         <img draggable="false" className="w-20 h-8 p-0.5 border object-contain" src={product.brand?.logo.url} alt={product.brand && product.brand.name} />
-                                        <span>{product.warranty} Year Warranty <Link className="font-medium text-primary-blue" to="/">Know More</Link></span>
+                                        <span>{product.warranty} Año de garantía <Link className="font-medium text-primary-blue" to="/">Saber más</Link></span>
                                     </div>
                                     {/* <!-- warranty & brand --> */}
 
                                     {/* <!-- delivery details --> */}
                                     <div className="flex gap-16 mt-4 items-center text-sm font-medium">
-                                        <p className="text-gray-500">Delivery</p>
+                                        <p className="text-gray-500">Envío</p>
                                         <span>Delivery by {getDeliveryDate()}</span>
                                     </div>
                                     {/* <!-- delivery details --> */}
@@ -225,7 +225,7 @@ const ProductDetails = () => {
                                     <div className="flex flex-col sm:flex-row justify-between">
                                         {/* <!-- highlights details --> */}
                                         <div className="flex gap-16 mt-4 items-stretch text-sm">
-                                            <p className="text-gray-500 font-medium">Highlights</p>
+                                            <p className="text-gray-500 font-medium">Destacados</p>
 
                                             <ul className="list-disc flex flex-col gap-2 w-64">
                                                 {product.highlights?.map((highlight, i) => (
@@ -239,16 +239,16 @@ const ProductDetails = () => {
 
                                         {/* <!-- services details --> */}
                                         <div className="flex gap-16 mt-4 mr-6 items-stretch text-sm">
-                                            <p className="text-gray-500 font-medium">Services</p>
+                                            <p className="text-gray-500 font-medium">Servicios</p>
                                             <ul className="flex flex-col gap-2">
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span> {product.warranty} Year</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span> {product.warranty} Año</p>
                                                 </li>
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><CachedIcon sx={{ fontSize: "18px" }} /></span> 7 Days Replacement Policy</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><CachedIcon sx={{ fontSize: "18px" }} /></span>  Política de reemplazo de 7 días</p>
                                                 </li>
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><CurrencyRupeeIcon sx={{ fontSize: "18px" }} /></span> Cash on Delivery available</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-blue"><CurrencyRupeeIcon sx={{ fontSize: "18px" }} /></span> Pago contra entrega disponible</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -258,27 +258,27 @@ const ProductDetails = () => {
 
                                     {/* <!-- seller details --> */}
                                     <div className="flex gap-16 mt-4 items-center text-sm font-medium">
-                                        <p className="text-gray-500">Seller</p>
+                                        <p className="text-gray-500">Marca</p>
                                         <Link className="font-medium text-primary-blue ml-3" to="/">{product.brand && product.brand.name}</Link>
                                     </div>
                                     {/* <!-- seller details --> */}
 
-                                    {/* <!-- flipkart plus banner --> */}
+                                    {/* <!-- Ferreteria Pitty plus banner --> */}
                                     <div className="sm:w-1/2 mt-4 border">
-                                        <img draggable="false" className="w-full h-full object-contain" src="https://rukminim1.flixcart.com/lockin/763/305/images/promotion_banner_v2_active.png" alt="" />
+                                        <img draggable="false" className="w-full h-full object-contain" src="https://i.ibb.co/DLC1HLm/logo.png" alt="" />
                                     </div>
-                                    {/* <!-- flipkart plus banner --> */}
+                                    {/* <!-- Ferreteria Pitty plus banner --> */}
 
                                     {/* <!-- description details --> */}
                                     <div className="flex flex-col sm:flex-row gap-1 sm:gap-14 mt-4 items-stretch text-sm">
-                                        <p className="text-gray-500 font-medium">Description</p>
+                                        <p className="text-gray-500 font-medium">Descripción</p>
                                         <span>{product.description}</span>
                                     </div>
                                     {/* <!-- description details --> */}
 
                                     {/* <!-- border box --> */}
                                     <div className="w-full mt-6 rounded-sm border flex flex-col">
-                                        <h1 className="px-6 py-4 border-b text-2xl font-medium">Product Description</h1>
+                                        <h1 className="px-6 py-4 border-b text-2xl font-medium"> Descripción del Producto</h1>
                                         <div className="p-6">
                                             <p className="text-sm">{product.description}</p>
                                         </div>
@@ -287,7 +287,7 @@ const ProductDetails = () => {
 
                                     {/* <!-- specifications border box --> */}
                                     <div className="w-full mt-4 pb-4 rounded-sm border flex flex-col">
-                                        <h1 className="px-6 py-4 border-b text-2xl font-medium">Specifications</h1>
+                                        <h1 className="px-6 py-4 border-b text-2xl font-medium">Especificaciónes</h1>
                                         <h1 className="px-6 py-3 text-lg">General</h1>
 
                                         {/* <!-- specs list --> */}
@@ -305,7 +305,7 @@ const ProductDetails = () => {
                                     {/* <!-- reviews border box --> */}
                                     <div className="w-full mt-4 rounded-sm border flex flex-col">
                                         <div className="flex justify-between items-center border-b px-6 py-4">
-                                            <h1 className="text-2xl font-medium">Ratings & Reviews</h1>
+                                            <h1 className="text-2xl font-medium">Me gusta y Comentarios</h1>
                                             <button onClick={handleDialogClose} className="shadow bg-primary-yellow text-white px-4 py-2 rounded-sm hover:shadow-lg">Rate Product</button>
                                         </div>
 
@@ -314,7 +314,7 @@ const ProductDetails = () => {
                                             open={open}
                                             onClose={handleDialogClose}
                                         >
-                                            <DialogTitle className="border-b">Submit Review</DialogTitle>
+                                            <DialogTitle className="border-b">Enviar Comentario</DialogTitle>
                                             <DialogContent className="flex flex-col m-1 gap-4">
                                                 <Rating
                                                     onChange={(e) => setRating(e.target.value)}
@@ -323,7 +323,7 @@ const ProductDetails = () => {
                                                     precision={0.5}
                                                 />
                                                 <TextField
-                                                    label="Review"
+                                                    label="Comentarios"
                                                     multiline
                                                     rows={3}
                                                     sx={{ width: 400 }}
@@ -334,14 +334,14 @@ const ProductDetails = () => {
                                                 />
                                             </DialogContent>
                                             <DialogActions>
-                                                <button onClick={handleDialogClose} className="py-2 px-6 rounded shadow bg-white border border-red-500 hover:bg-red-100 text-red-600 uppercase">Cancel</button>
-                                                <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded bg-green-600 hover:bg-green-700 text-white shadow uppercase">Submit</button>
+                                                <button onClick={handleDialogClose} className="py-2 px-6 rounded shadow bg-white border border-red-500 hover:bg-red-100 text-red-600 uppercase">Cancelar</button>
+                                                <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded bg-green-600 hover:bg-green-700 text-white shadow uppercase">Enviar</button>
                                             </DialogActions>
                                         </Dialog>
 
                                         <div className="flex items-center border-b">
                                             <h1 className="px-6 py-3 text-3xl font-semibold">{product.ratings && product.ratings.toFixed(1)}<StarIcon /></h1>
-                                            <p className="text-lg text-gray-500">({product.numOfReviews}) Reviews</p>
+                                            <p className="text-lg text-gray-500">({product.numOfReviews}) Comentarios</p>
                                         </div>
 
                                         {viewAll ?
@@ -362,7 +362,7 @@ const ProductDetails = () => {
                                             )).reverse()
                                         }
                                         {product.reviews?.length > 3 &&
-                                            <button onClick={() => setViewAll(!viewAll)} className="w-1/3 m-2 rounded-sm shadow hover:shadow-lg py-2 bg-primary-blue text-white">{viewAll ? "View Less" : "View All"}</button>
+                                            <button onClick={() => setViewAll(!viewAll)} className="w-1/3 m-2 rounded-sm shadow hover:shadow-lg py-2 bg-black text-white">{viewAll ? "View Less" : "Ver Todo"}</button>
                                         }
                                     </div>
                                     {/* <!-- reviews border box --> */}
@@ -377,7 +377,7 @@ const ProductDetails = () => {
 
                         {/* Sliders */}
                         <div className="flex flex-col gap-3 mt-6">
-                            <ProductSlider  />
+                            <ProductSlider title={"Similar Products"} tagline={"Based on the category"} />
                         </div>
 
                     </main>
