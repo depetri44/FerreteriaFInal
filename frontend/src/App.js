@@ -8,7 +8,7 @@ import { loadUser } from './actions/userAction';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import UpdateProfile from './components/User/UpdateProfile';
-import UpdatePassword from './components/User/UpdatePassword';
+import UpdatePassword from './components/User/UpdatePassword'; 
 import ForgotPassword from './components/User/ForgotPassword';
 import ResetPassword from './components/User/ResetPassword';
 import Account from './components/User/Account';
