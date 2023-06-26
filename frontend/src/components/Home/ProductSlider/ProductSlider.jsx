@@ -51,7 +51,7 @@ const ProductSlider = () => {
                     className="absolute inset-0"
                     to={`/product/${products.id
                       ?.toLowerCase()
-                      .replace(/\s/g, "-")}/${products.id}`}
+                      .replace(/\s/g, "-")}/${products. id}`}
                   ></Link>
                   <div className="relative flex-shrink-0 bg-slate-50 rounded-3xl overflow-hidden z-1 group">
                     <Link
